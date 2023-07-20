@@ -26,4 +26,14 @@ class MenuBuilder:
 
     # Req 4
     def get_main_menu(self, restriction=None) -> List[Dict]:
-        pass
+        return [
+            {
+                "dish_name": dish.name,
+                "price": dish.price,
+                "ingredients": dish.get_ingredients(),
+                "restrictions": dish.get_restrictions(),
+            }
+            for dish in self.menu_data.dishes
+            if restriction is None or
+            restriction not in dish.get_restrictions()
+        ]
